@@ -25,7 +25,7 @@ class Route
 		// получаем имя экшена
 		if ( !empty($routes[2]) )
 		{
-			$action_name = $routes[2];
+			$action_name = explode('?', $routes[2]) [0];
 		}
 
 		// добавляем префиксы
@@ -81,7 +81,7 @@ class Route
 	
 	}
 
-	function ErrorPage404()
+	static function ErrorPage404()
 	{
         $host = 'http://'.$_SERVER['HTTP_HOST'].'/';
         header('HTTP/1.1 404 Not Found');

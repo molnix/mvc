@@ -1,3 +1,4 @@
+<?php //session_start(); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -79,6 +80,7 @@
 				<div id="content">
 					<div class="box">
 						<?php include 'application/views/'.$content_view; ?>
+
 						<!--
 						<h2>Welcome to Accumen</h2>
 						<img class="alignleft" src="images/pic01.jpg" width="200" height="180" alt="" />

@@ -35,4 +35,25 @@ class Model
             'INSERT INTO `'.$this->table.'` ('.implode(', ', array_keys($data)).') VALUES ('.implode(', ', $values).')');
     }
 
+    public function update($data)
+    {
+        return $this->pdo->query("UPDATE ".$this->table." SET site=".$data['site'].", year=".$data['year'].", description=".$data['description']." where idPortfolio=".$data['idPortfolio']." ");
+    }
+
+    public function delete($id)
+    {
+        $this->pdo->query('DELETE FROM `'.$this->table.'` WHERE `idPortfolio`='.$id);
+    }
+    
+
+
+
+    /**
+     * @return PDO
+     */
+    public function getById($id, $columns = ['*'])
+    {
+        return $this->pdo->query('SELECT '.implode(', ', $columns).' FROM `'.$this->table.'` WHERE`idPortfolio`='.$id)->fetch();
+    }
+
 }

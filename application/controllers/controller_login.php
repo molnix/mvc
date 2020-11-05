@@ -1,33 +1,19 @@
 <?php
-
+require $_SERVER['DOCUMENT_ROOT'].'/application/services/UserService.php';
 class Controller_Login extends Controller
 {
-    function __construct()
-	{
-		$this->model = new Model_Login();
-		$this->view = new View();
-	}
-    
-	function action_index()
-	{
-        $data['users'] = $this->model->get_data();
 
-        if(isset($_POST['login']) && isset($_POST['password'])){
-            $login = $_POST['login'];
-            $password = $_POST['password'];
-            
-            foreach($data['users'] as $rows){
-                if($rows['login'] == $login && $rows['password'] == $password){
-                    session_start();
-                    $_SESSION['idUser'] = $rows['idUser'];
-                    $data['errors'] = "Вы вошли";
-                }
-                else{
-                    $data['errors'] = "Неверно введены данные";
-                }
-            }
+    function action_index()
+    {
+        $userService = new UserService();
+
+        if ($userService->login($_POST['login'], $_POST['password'])) {
+            $data["login_status"] = "access_granted";
+        } else {
+            $data["login_status"] = "access_denied";
         }
 
-		$this->view->generate('login_view.php', 'template_view.php', $data);
-	}
+        $this->view->generate('login_view.php', 'template_view.php', $data);
+    }
+
 }

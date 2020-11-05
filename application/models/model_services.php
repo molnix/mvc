@@ -2,12 +2,11 @@
 
 class Model_Services extends Model
 {
-
     public $table = 'services';
-	
-	public function get_data()
-	{
+
+    public function get_data()
+    {
         return $this->get();
-	}
+    }
 
 }
